@@ -32,6 +32,7 @@ class _OrgLoginState extends State<OrgLogin> {
               ),
               SizedBox(height: 20),
               TextField(
+                obscureText: true,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',

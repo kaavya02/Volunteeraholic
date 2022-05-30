@@ -60,7 +60,7 @@ class _StudentOrgScreenState extends State<StudentOrgScreen> {
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          child: Center(
+          child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
