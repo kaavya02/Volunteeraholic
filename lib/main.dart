@@ -61,7 +61,6 @@ class _StudentOrgScreenState extends State<StudentOrgScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-
             Text(
                 'Sign In',
                 style: TextStyle(fontSize: 28)),
