@@ -46,16 +46,29 @@ class _OrgLoginState extends State<OrgLogin> {
                 controller: passwordController,
               ),
               SizedBox(height: 20),
-              ElevatedButton(onPressed: () {
-                FirebaseAuth
-                    .instance
-                    .signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)
-                    .then((value) => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) {return HomeScreen();}),
+              SizedBox(
+                height: 62,
+                width: 365,
+                child: ElevatedButton(onPressed: () {
+                  FirebaseAuth
+                      .instance
+                      .signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)
+                      .then((value) => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) {return HomeScreen();}),
+                  ),
+                  );
+                },
+                  child: Text("Login"),
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                          )
+                      )
+                  ),
                 ),
-                );
-              }, child: Text("Login")),
+              ),
             ],
           ),
         ),

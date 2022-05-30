@@ -15,22 +15,34 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30),
-        child: Center(
-          child: ElevatedButton(onPressed: () {
-            FirebaseAuth
-                .instance
-                .signOut()
-                .then((value) =>
-              Navigator.push(
-              context,
-              MaterialPageRoute(builder: (BuildContext context) {
-                return StudentOrgScreen();
-              }
+        child:
+          SizedBox(
+            height: 42,
+            width: 315,
+            child: ElevatedButton(onPressed: () {
+              FirebaseAuth
+                  .instance
+                  .signOut()
+                  .then((value) =>
+                Navigator.push(
+                context,
+                MaterialPageRoute(builder: (BuildContext context) {
+                  return StudentOrgScreen();
+                }
+                ),
+              )
+            );
+            },
+              child: Text('Logout'),
+              style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(25.0),
+                      )
+                  )
               ),
-            )
-          );
-          }, child: Text('Logout'))
-        ),
+            ),
+          ),
       ),
     );
   }

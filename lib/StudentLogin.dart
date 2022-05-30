@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:volunteeraholic/AppThemes.dart';
 import 'package:volunteeraholic/HomeScreen.dart';
 
 class StudentLogin extends StatefulWidget {
@@ -35,24 +36,39 @@ class _StudentLoginState extends State<StudentLogin> {
                 controller: emailController,
               ),
               SizedBox(height: 20),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
+              SizedBox(
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Password',
+                  ),
+                  controller: passwordController,
                 ),
-                controller: passwordController,
               ),
               SizedBox(height: 20),
-              ElevatedButton(onPressed: () {
-                FirebaseAuth
-                    .instance
-                    .signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)
-                    .then((value) => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (BuildContext context) {return HomeScreen();}),
+              SizedBox(
+                height: 62,
+                width: 365,
+                child: ElevatedButton(onPressed: () {
+                  FirebaseAuth
+                      .instance
+                      .signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)
+                      .then((value) => Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (BuildContext context) {return HomeScreen();}),
+                  ),
+                  );
+                },
+                  child: Text("Login", style: TextStyle(fontSize: 20, color: white),),
+                  style: ButtonStyle(
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25.0),
+                          )
+                      )
+                  ),
                 ),
-                );
-              }, child: Text("Login")),
+              ),
             ],
           ),
         ),
