@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:volunteeraholic/main.dart';
 
@@ -16,13 +17,21 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: EdgeInsets.symmetric(horizontal: 30),
         child: Center(
           child: ElevatedButton(onPressed: () {
-            Navigator.push(
+            FirebaseAuth
+                .instance
+                .signOut()
+                .then((value) =>
+              Navigator.push(
               context,
-              MaterialPageRoute(builder: (BuildContext context) {return StudentOrgScreen();}),
-            );
+              MaterialPageRoute(builder: (BuildContext context) {
+                return StudentOrgScreen();
+              }
+              ),
+            )
+          );
           }, child: Text('Logout'))
         ),
       ),
-    );;
+    );
   }
 }
