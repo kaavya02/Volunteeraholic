@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:volunteeraholic/HomeScreen.dart';
 
 class OrgLogin extends StatefulWidget {
   const OrgLogin({Key? key}) : super(key: key);
@@ -37,14 +38,12 @@ class _OrgLoginState extends State<OrgLogin> {
                 ),
               ),
               SizedBox(height: 20),
-              ElevatedButton(onPressed: () {}, child: Text("Login")),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Not registered yet?"),
-                  TextButton(onPressed: () {}, child: Text("Sign up"))
-                ],
-              )
+              ElevatedButton(onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (BuildContext context) {return HomeScreen();}),
+                );
+              }, child: Text("Login")),
             ],
           ),
         ),

@@ -1,29 +1,37 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:volunteeraholic/HomeScreen.dart';
 
-class StudentLogin extends StatefulWidget {
-  const StudentLogin({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<StudentLogin> createState() => _StudentLoginState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _StudentLoginState extends State<StudentLogin> {
+class _SignUpState extends State<SignUp> {
+  final emailController =  TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Sign Up')),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30),
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
-                  "Please enter your NUS email and password",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 15)),
+              TextField(
+                decoration: InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Username',
+                ),
+              ),
               SizedBox(height: 20),
               TextField(
+                controller: emailController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'NUS emailID',
@@ -31,6 +39,7 @@ class _StudentLoginState extends State<StudentLogin> {
               ),
               SizedBox(height: 20),
               TextField(
+                controller: passwordController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Password',
@@ -38,11 +47,15 @@ class _StudentLoginState extends State<StudentLogin> {
               ),
               SizedBox(height: 20),
               ElevatedButton(onPressed: () {
-                Navigator.push(
-                  context,
+                FirebaseAuth
+                    .instance
+                    .createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text)
+                    .then((value) => Navigator.push(
+                  context, 
                   MaterialPageRoute(builder: (BuildContext context) {return HomeScreen();}),
-                );
-              }, child: Text("Login")),
+                ),
+                    );
+              }, child: Text('Sign Up'))
             ],
           ),
         ),

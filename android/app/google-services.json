@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "246750559408",
+    "project_id": "volunteer-a-holic-8a94c",
+    "storage_bucket": "volunteer-a-holic-8a94c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246750559408:android:a6a28ff784e3d10aec0f75",
+        "android_client_info": {
+          "package_name": "com.orbital.volunteeraholic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246750559408-7dt5n7mg7krdiputdi78vu51q2jf0eko.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJaRmZ9aVoVa9oHgrTnWrqtldziR3RfGg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246750559408-7dt5n7mg7krdiputdi78vu51q2jf0eko.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "246750559408-dmih89tgh9o40baqt3rh1cm84mdodfcm.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.orbital.volunteeraholic"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
