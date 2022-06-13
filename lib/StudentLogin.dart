@@ -38,6 +38,7 @@ class _StudentLoginState extends State<StudentLogin> {
               SizedBox(height: 20),
               SizedBox(
                 child: TextField(
+                  obscureText: true,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'Password',
