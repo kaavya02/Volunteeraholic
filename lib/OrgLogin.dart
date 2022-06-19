@@ -17,6 +17,7 @@ class _OrgLoginState extends State<OrgLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Manage Your Organisation'),),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30),
         child: Center(
