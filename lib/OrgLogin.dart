@@ -3,77 +3,45 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:volunteeraholic/HomeScreen.dart';
 
+import 'auth_service.dart';
+
 class OrgLogin extends StatefulWidget {
-  const OrgLogin({Key? key}) : super(key: key);
+  const OrgLogin({ Key ? key }) : super (key: key);
 
   @override
-  State<OrgLogin> createState() => _OrgLoginState();
+  _OrgLoginState createState() => _OrgLoginState();
 }
-
 class _OrgLoginState extends State<OrgLogin> {
-  final emailController =  TextEditingController();
-  final passwordController = TextEditingController();
-
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Manage Your Organisation'),),
-      body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 30),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                  "Please enter the registered NUS emailID and password of the organisation",
-                  style: TextStyle(fontSize: 15),
-                  textAlign: TextAlign.center
-              ),
-              SizedBox(height: 20),
-              TextField(
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'NUS emailID',
-                ),
-                controller: emailController,
-              ),
-              SizedBox(height: 20),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Password',
-                ),
-                controller: passwordController,
-              ),
-              SizedBox(height: 20),
-              SizedBox(
-                height: 62,
-                width: 365,
-                child: ElevatedButton(onPressed: () {
-                  FirebaseAuth
-                      .instance
-                      .signInWithEmailAndPassword(email: emailController.text, password: passwordController.text)
-                      .then((value) => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (BuildContext context) {return HomeScreen();}),
-                  ),
-                  );
-                },
-                  child: Text("Login"),
-                  style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25.0),
-                          )
-                      )
-                  ),
-                ),
-              ),
-            ],
-          ),
+  Widget build (BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return Scaffold (
+        backgroundColor : Colors.white ,
+        appBar : AppBar (
+        title : const Text ("Google Login"),
+        backgroundColor : Colors.green,
         ),
-      ),
-    );
-  }
-}
+      body: Container(
+        width : size.width,
+        height : size.height,
+        padding: EdgeInsets.only(
+            left: 20, right: 20, top: size.height * 0.2, bottom: size.height * 0.5),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text("Hello, \nGoogle sign in",
+              style: TextStyle(
+                  fontSize: 30
+        )),
+        GestureDetector(
+        onTap: () {
+          AuthService().signInWithGoogle();
+        },
+        child: const Image(width: 100, image: AssetImage('assets/images/google.png'))),
+        ],
+        ),
+        ),
+        );
+        }
+    }

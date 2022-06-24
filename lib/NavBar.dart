@@ -16,13 +16,13 @@ notLoggedIn(BuildContext context) {
   return [
     DrawerHeader(
       decoration: BoxDecoration(
-          color: darkGreen,),
+        color: darkGreen,),
       child: Column(
         children: [
           CircleAvatar(
-            child: ClipOval(
-                child: Image.asset('assets/images/logo1.png')),
-                radius: 43.0),
+              child: ClipOval(
+                  child: Image.asset('assets/images/logo1.png')),
+              radius: 43.0),
           OutlinedButton(onPressed: () {
             Navigator.push(
               context, MaterialPageRoute(builder: (BuildContext context) {
@@ -59,8 +59,8 @@ LoggedIn(BuildContext context) {
         accountName: accountName,
         accountEmail: accountEmail,
         currentAccountPicture: CircleAvatar(
-          child: ClipOval(child:
-          Image.asset('assets/images/logo1.png'))
+            child: ClipOval(child:
+            Image.asset('assets/images/logo1.png'))
         )
     ),
     ListTile(
@@ -109,4 +109,3 @@ class NavBar extends StatelessWidget {
     );
   }
 }
-
