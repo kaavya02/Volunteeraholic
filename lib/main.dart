@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
           backgroundColor: white,
           fontFamily: 'Open Sans'
       ),
-      home: AuthService().handleAuthState(),
+      home: HomeScreen(),
     );
   }
 }

@@ -2,15 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:volunteeraholic/AppThemes.dart';
+import 'package:volunteeraholic/OrgLogin.dart';
+import 'package:volunteeraholic/Post.dart';
 import 'package:volunteeraholic/StudentLogin.dart';
+import 'package:volunteeraholic/HomeScreen.dart';
+import 'package:volunteeraholic/auth_service.dart';
 
-const accountName = Text('Username');
-const accountEmail = Text('nusemail@u.nus.edu');
-const avatar = Text('none');
-
-//change false to true when u need to check other format
-const loggedIn = false;
-
+var accountName = Text((FirebaseAuth.instance.currentUser!.displayName! == null) ? ('Username') : (FirebaseAuth.instance.currentUser!.displayName!));
+var accountEmail = Text((FirebaseAuth.instance.currentUser!.email! == null) ? ('nusemail@u.nus.edu') : (FirebaseAuth.instance.currentUser!.email!));
 
 notLoggedIn(BuildContext context) {
   return [
@@ -49,6 +48,18 @@ notLoggedIn(BuildContext context) {
     ListTile(
       leading: Icon(Icons.search),
       title: Text('Search'),
+      onTap: () {},
+    ),
+    Divider(),
+    ListTile(
+      leading: Icon(Icons.group_add_rounded),
+      title: Text('Manage Organisations'),
+      onTap: () {
+        Navigator.push(
+          context, MaterialPageRoute(builder: (BuildContext context) {
+          return OrgLogin();
+        }),);
+      },
     ),
   ];
 }
@@ -66,45 +77,70 @@ LoggedIn(BuildContext context) {
     ListTile(
       leading: Icon(Icons.search),
       title: Text('Search'),
+      onTap: () {},
     ),
     ListTile(
       leading: Icon(Icons.assignment),
       title: Text('View Appplications'),
+      onTap: () {},
     ),
     ListTile(
       leading: Icon(Icons.calendar_month_outlined),
       title: Text('Calendar'),
+      onTap: () {},
     ),
     Divider(),
     ListTile(
-      leading: Icon(Icons.post_add),
-      title: Text('Post'),
-    ),
-    ListTile(
       leading: Icon(Icons.group_add_rounded),
-      title: Text('Manage Organisations'),
+      title: Text('Post'),
+      onTap: () {
+        Navigator.push(
+          context, MaterialPageRoute(builder: (BuildContext context) {
+          return PostScreen();
+        }),);
+      },
     ),
+
     Divider(),
     ListTile(
       leading: Icon(Icons.settings),
       title: Text('Settings'),
+      onTap: () {},
     ),
     ListTile(
       leading: Icon(Icons.logout),
       title: Text('Logout'),
+      onTap: () {
+        FirebaseAuth
+            .instance
+            .signOut()
+            .then((value) =>
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (BuildContext context) {
+                return HomeScreen();
+              }
+              ),
+            )
+        );
+      },
     ),
   ];
 }
 
 class NavBar extends StatelessWidget {
+
   const NavBar({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: (loggedIn) ? (LoggedIn(context)) : (notLoggedIn(context)),
+      child: Material(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: (loggedIn) ? (LoggedIn(context)) : (notLoggedIn(context)),
+        ),
       ),
     );
   }

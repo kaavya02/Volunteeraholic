@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:volunteeraholic/AppThemes.dart';
 import 'package:volunteeraholic/HomeScreen.dart';
+import 'package:volunteeraholic/SignUp.dart';
 
 class StudentLogin extends StatefulWidget {
   const StudentLogin({Key? key}) : super(key: key);
@@ -70,6 +71,19 @@ class _StudentLoginState extends State<StudentLogin> {
                       )
                   ),
                 ),
+              ),
+              SizedBox(height: 30,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Not registered yet?"),
+                  TextButton(onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (BuildContext context) {return SignUp();}),
+                    );
+                  }, child: Text("Sign up"))
+                ],
               ),
             ],
           ),

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "246750559408",
+    "firebase_url": "https://volunteer-a-holic-8a94c-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "volunteer-a-holic-8a94c",
     "storage_bucket": "volunteer-a-holic-8a94c.appspot.com"
   },
@@ -13,6 +14,22 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "246750559408-ed0jbuj6mgf73on6kn9irc36232ihbtg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.orbital.volunteeraholic",
+            "certificate_hash": "dba76584986278e2dc55a793e2428f12e8a60449"
+          }
+        },
+        {
+          "client_id": "246750559408-eq2t09ejjcn65svo04k9nai92spm62l7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.orbital.volunteeraholic",
+            "certificate_hash": "ae8bd918bd3e206edb28c8eb1cb4f253d5e6570f"
+          }
+        },
         {
           "client_id": "246750559408-7dt5n7mg7krdiputdi78vu51q2jf0eko.apps.googleusercontent.com",
           "client_type": 3
