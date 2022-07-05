@@ -1,9 +1,57 @@
-
-import 'dart:js_util/js_util_wasm.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:volunteeraholic/AppThemes.dart';
+
+class Post {
+  String id;
+  final String orgName;
+  final String description;
+  final String volunteerRequirements;
+  final String commitment;
+  final String volunteerRewards;
+
+  Post({
+    this.id = '',
+    required this.orgName,
+    required this.volunteerRequirements,
+    required this.commitment,
+    required this.description,
+    required this.volunteerRewards,
+  });
+
+  Map<String, dynamic> toJson() => {
+    'id' : id,
+    'orgName': orgName,
+    'volunteerRequirements': volunteerRequirements,
+    'commitment' : commitment,
+    'description': description,
+    'volunteerRewards' : volunteerRewards
+  };
+
+  static Post fromJson(Map<String, dynamic> json) => Post(
+      orgName: json['orgName'],
+      volunteerRequirements: json['volunteerRequirements'],
+      commitment: json['commitment'],
+      description: json['description'],
+      volunteerRewards: json['volunteerRewards']);
+}
+
+Future createPost(Post post) async {
+
+  final docPost =  FirebaseFirestore.instance.collection('posts').doc();
+  post.id = docPost.id;
+
+  final json = post.toJson();
+
+  await docPost.set(json);
+}
+
+Stream<List<Post>> readPosts() => FirebaseFirestore
+    .instance
+    .collection('posts')
+    .snapshots()
+    .map((snapshot) => snapshot.docs.map((post) => Post.fromJson(post.data())).toList())
+    ;
 
 class PostScreen extends StatefulWidget {
   const PostScreen({Key? key}) : super(key: key);
@@ -21,6 +69,7 @@ class _PostScreenState extends State<PostScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(title: Text('Creat a Post'),),
       body: SingleChildScrollView(
@@ -92,6 +141,16 @@ class _PostScreenState extends State<PostScreen> {
                 height: 50,
                 width: 365,
                 child: ElevatedButton(onPressed: () {
+                  final post = Post(
+                      orgName: orgName.text,
+                      volunteerRequirements: volunteerRequirements.text,
+                      commitment: commitmentPeriod.text,
+                      description: description.text,
+                      volunteerRewards: volunteerRewards.text
+                  );
+                  
+                  createPost(post);
+
                   Navigator.pop(context);
                 },
                   child: Text("Upload Post", style: TextStyle(fontSize: 20, color: white),),
@@ -109,41 +168,9 @@ class _PostScreenState extends State<PostScreen> {
         ),
       )
     );
-
-    Future createPost({
-      required String orgName,
-      required String description,
-      required String volunteerRequirements,
-      required String commitmentPeriod,
-      required String  volunteerRewards}) async {
-
-      final docPost = FirebaseFirestore.instance.collection('posts').doc();
-
-      final jsonPost = Post(
-          orgName: orgName,
-          volunteerRequirements: volunteerRequirements,
-          commitment: commitmentPeriod,
-          description: description,
-          volunteerRewards: volunteerRewards);
-    }
   }
 }
 
 
-class Post {
-  final String id;
-  final String orgName;
-  final String description;
-  final String volunteerRequirements;
-  final String commitment;
-  final String volunteerRewards;
 
-  Post({
-    this.id = '',
-    required this.orgName,
-    required this.volunteerRequirements,
-    required this.commitment,
-    required this.description,
-    required this.volunteerRewards,
-});
-}
+

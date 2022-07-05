@@ -8,7 +8,7 @@ import 'package:volunteeraholic/StudentLogin.dart';
 import 'package:volunteeraholic/HomeScreen.dart';
 import 'package:volunteeraholic/auth_service.dart';
 
-var accountName = Text((FirebaseAuth.instance.currentUser!.displayName! == null) ? ('Username') : (FirebaseAuth.instance.currentUser!.displayName!));
+var accountName = Text('Username');
 var accountEmail = Text((FirebaseAuth.instance.currentUser!.email! == null) ? ('nusemail@u.nus.edu') : (FirebaseAuth.instance.currentUser!.email!));
 
 notLoggedIn(BuildContext context) {

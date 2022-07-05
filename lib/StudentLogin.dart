@@ -18,7 +18,7 @@ class _StudentLoginState extends State<StudentLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Login')),
+      appBar: AppBar(title: Text('Student Login')),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 30),
         child: Center(
