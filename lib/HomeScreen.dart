@@ -42,11 +42,12 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 Widget buildPost(Post post) => Card(
-  elevation: 50,
+  elevation: 10,
   shadowColor: light,
   child: Column(
     mainAxisSize: MainAxisSize.min,
     children: [
+      SizedBox(height: 20,),
       ListTile(
         title: Text(post.eventName),
         subtitle: Text(post.orgName +

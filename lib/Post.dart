@@ -42,15 +42,15 @@ class Post {
   };
 
   static Post fromJson(Map<String, dynamic> json) => Post(
-      eventName: json['eventName'],
-      imageURL: json['imageURL'],
+      eventName: json['eventName']?? '',
+      imageURL: json['imageURL']?? '',
       orgName: json['orgName'],
-      volunteerRequirements: json['volunteerRequirements'],
-      startDate: json['startDate'],
-      commitment: json['commitment'],
-      description: json['description'],
-      volunteerRewards: json['volunteerRewards'],
-      linkToSignUp: json['linkToSignUp']);
+      volunteerRequirements: json['volunteerRequirements']?? '',
+      startDate: json['startDate'].toDate()?? '',
+      commitment: json['commitment']?? '',
+      description: json['description']?? '',
+      volunteerRewards: json['volunteerRewards']?? '',
+      linkToSignUp: json['linkToSignUp']?? '');
 }
 
 Future createPost(Post post) async {
