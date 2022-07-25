@@ -1,6 +1,8 @@
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:volunteeraholic/AppThemes.dart';
 import 'package:volunteeraholic/HomeScreen.dart';
+import 'package:volunteeraholic/PostPage.dart';
 import 'package:volunteeraholic/auth_service.dart';
 import 'package:volunteeraholic/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';

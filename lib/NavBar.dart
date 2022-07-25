@@ -7,6 +7,7 @@ import 'package:volunteeraholic/Post.dart';
 import 'package:volunteeraholic/StudentLogin.dart';
 import 'package:volunteeraholic/HomeScreen.dart';
 import 'package:volunteeraholic/auth_service.dart';
+import 'package:volunteeraholic/Search.dart';
 
 var accountName = Text('Username');
 var accountEmail = Text((FirebaseAuth.instance.currentUser!.email! == null) ? ('nusemail@u.nus.edu') : (FirebaseAuth.instance.currentUser!.email!));
@@ -48,7 +49,11 @@ notLoggedIn(BuildContext context) {
     ListTile(
       leading: Icon(Icons.search),
       title: Text('Search'),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) {
+          return CloudFirestoreSearch();
+        }),);
+      },
     ),
     Divider(),
     ListTile(
@@ -77,7 +82,12 @@ LoggedIn(BuildContext context) {
     ListTile(
       leading: Icon(Icons.search),
       title: Text('Search'),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context, MaterialPageRoute(builder: (BuildContext context) {
+            return CloudFirestoreSearch();
+        }),);
+      }
     ),
     ListTile(
       leading: Icon(Icons.assignment),
