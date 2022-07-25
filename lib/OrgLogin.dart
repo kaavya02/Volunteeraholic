@@ -26,7 +26,7 @@ class _OrgLoginState extends State<OrgLogin> {
         width : size.width,
         height : size.height,
         padding: EdgeInsets.only(
-            left: 20, right: 20, top: size.height * 0.1, bottom: size.height * 0.5),
+            left: 20, right: 20, top: size.height * 0.02, bottom: size.height * 0.5),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,7 +40,7 @@ class _OrgLoginState extends State<OrgLogin> {
         onTap: () {
           AuthService().signInWithGoogle();
         },
-        child: const Image(width: 100, height: 30, image: AssetImage('assets/images/google.png'))),
+        child: const Image(width: 100, height: 40, image: AssetImage('assets/images/google.png'))),
         ],
         ),
         ),

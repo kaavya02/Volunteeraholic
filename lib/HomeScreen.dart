@@ -25,13 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
         StreamBuilder<List<Post>>(
             stream: readPosts(),
             builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text('No posts currently available');
-              } else if (snapshot.hasData) {
+              if (snapshot.hasData) {
                 final posts = snapshot.data!;
                 return ListView(
                   children: posts.map(buildPost).toList(),
                 );
+              } else if (snapshot.hasError) {
+                return Text('An error has occurred: ${snapshot.error}');
               } else {
                 return Center(child: CircularProgressIndicator(),);
               }
@@ -41,15 +41,19 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-Widget buildPost(Post post) => Column(
-  children: [
-        ListTile(
-      leading: CircleAvatar(
-          backgroundImage: AssetImage('assets/icons/tutorIcon.png')
+Widget buildPost(Post post) => Card(
+  elevation: 50,
+  shadowColor: light,
+  child: Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      ListTile(
+        title: Text(post.eventName),
+        subtitle: Text(post.orgName +
+            '\nStart Date :' + post.startDate.toString() +
+            '\nDuration' + post.commitment),
       ),
-      title: Text(post.orgName),
-      subtitle: Text(post.description),
-    ),
-    SizedBox(height: 20,)
-  ],
+      TextButton(onPressed: () {}, child: Text('View More ->'))
+    ],
+  ),
 );

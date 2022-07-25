@@ -145,3 +145,4 @@ class NavBar extends StatelessWidget {
     );
   }
 }
+
